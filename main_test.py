@@ -1,25 +1,68 @@
 from main import *
 
+
 run_cases = [
     (
-        "You can't spell America without Erica",
-        "YOU CAN'T SPELL AMERICA WITHOUT ERICA...",
+        "00FFFF",
+        (0, 255, 255),
     ),
-    ("Friends don't lie.", "FRIENDS DON'T LIE..."),
-    (" She's our friend and she's crazy!", "SHE'S OUR FRIEND AND SHE'S CRAZY!..."),
+    (
+        "FFFF00",
+        (255, 255, 0),
+    ),
+    (
+        "Hello!",
+        None,
+        "not a hex color string",
+    ),
+    (
+        "42",
+        None,
+        "not a hex color string",
+    ),
+    (
+        1_000_000,
+        None,
+        "not a hex color string",
+    ),
 ]
 
 submit_cases = run_cases + [
-    (" You're gonna slay 'em dead, Nance. ", "YOU'RE GONNA SLAY 'EM DEAD, NANCE..."),
+    (
+        "",
+        None,
+        "not a hex color string",
+    ),
+    (
+        "FF00FF",
+        (255, 0, 255),
+    ),
+    (
+        "000000",
+        (0, 0, 0),
+    ),
+    (
+        "FFFFFF",
+        (255, 255, 255),
+    ),
 ]
 
 
-def test(input, expected_output):
+def test(input, expected_output, expected_err=None):
     print("---------------------------------")
-    print(f"Input: {input}")
+    print(f"  Inputs: '{input}'")
+    try:
+        result = hex_to_rgb(input)
+    except Exception as e:
+        print(f"Expected Error: {expected_err}")
+        print(f"  Actual Error: {str(e)}")
+        if str(e) != expected_err:
+            print("Fail")
+            return False
+        print("Pass")
+        return True
     print(f"Expected: {expected_output}")
-    result = format_line(input)
-    print(f"Actual: {result}")
+    print(f"  Actual: {result}")
     if result != expected_output:
         print("Fail")
         return False
