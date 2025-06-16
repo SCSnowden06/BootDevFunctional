@@ -1,2 +1,3 @@
-def file_to_prompt(file, to_string):
-    return f"```\n{to_string(file)}\n```" 
+def file_type_getter(file_extension_tuples):
+    pass
+ 
