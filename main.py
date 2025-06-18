@@ -17,10 +17,11 @@
 def remove_invalid_lines(document):
     #print(document)
     iterable_document = document.split("\n")
+    print(iterable_document)
     iterated_document = []
     for line in iterable_document:
         #print(line)
-        if line.startswith("*"):
+        if line.startswith("-") == False:
             iterated_document.append(line)
         #print(f"this is the iterated one \n{iterated_document}\n\n")
     joined_string = "\n".join(iterated_document)
